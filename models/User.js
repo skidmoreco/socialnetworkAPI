@@ -14,28 +14,27 @@ const userSchema = new User.Schema(
         type: String, 
         required: true, 
         unique: true, 
-        match: `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
+        match: [`/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`, 'This email does not match! Please re-enter another email!']
+        
     },
-    thoughts: {
-        type: User.Schema.Types.ObjectId,
+    thoughts: [
+        {
+        type: Schema.Types.ObjectId,
         ref: 'Thought'
-    },
-    friends: {
-        type: User.Scehma.Types.ObjectId,
+        },
+    ],
+    friends: [
+        {
+        type: Scehma.Types.ObjectId,
         ref: 'User'
-    },
-},
-{
-    toJSON: {
-        virtuals: true,
-    }
+        }
+    ],
+}
+);
+userSchema.virtual('friendCount').get(function () {
+    return this.friends.length
 });
 
-
-
-// Add virtual
-
-// Make model of User
 
 const User = model('user', userSchema);
 userSchema.plugin(uniqueValidator);

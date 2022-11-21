@@ -4,8 +4,8 @@ const dateFormat = require('../utils/dateFormat');
 const reactionSchema = new Schema(
     {
         reactionId: {
-            type: reactionSchema.Schema.Types.ObjectId,
-            default: Object,
+            type: Schema.Types.ObjectId,
+            default: () => new Types.ObjectId
         },
         reactionBody: {
             type: String,
@@ -19,7 +19,15 @@ const reactionSchema = new Schema(
         createdAt: {
             type: Date,
             default: Date.now,
-        }
+            get: timestamp => dateFormat(timestamp),
+        },
+    },
+    {
+        toJSON: {
+            virtuals: true,
+          },
+          id: false,
+        
     }
   
 );
