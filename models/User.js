@@ -1,8 +1,7 @@
 const { Schema, model } = require('mongoose');
-const uniqueValidator = require('mongoose-unique-validator');
 
 
-const userSchema = new User.Schema(
+const userSchema = new Schema(
 {
     userName: { 
         type: String, 
@@ -25,7 +24,7 @@ const userSchema = new User.Schema(
     ],
     friends: [
         {
-        type: Scehma.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User'
         }
     ],
@@ -37,6 +36,6 @@ userSchema.virtual('friendCount').get(function () {
 
 
 const User = model('user', userSchema);
-userSchema.plugin(uniqueValidator);
+// userSchema.plugin(uniqueValidator);
 
 module.exports = User;

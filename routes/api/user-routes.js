@@ -8,7 +8,10 @@ const {
   // Exported functions from user controller
 } = require('../../controllers/user-controller.js');
 
-router.route('/').get(getUsers).post(createUser);
+router
+  .route('/')
+  .get(getUsers)
+  .post(createUser);
 // Use exported functions from line 3 to create routes
 
 router
@@ -16,5 +19,9 @@ router
   .get(getSingleUser)
   .put(updateUser)
   .delete(deleteUser);
+
+
+
+
 
 module.exports = router;
