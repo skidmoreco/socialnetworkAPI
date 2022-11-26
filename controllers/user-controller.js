@@ -5,7 +5,7 @@ const userController = {
     getUsers(req, res) {
         User.find()
         .then((userData) => {
-            return res.JSON(userData)
+            return res.json(userData)
         })
         .catch((err) => {
             console.log(err);
@@ -23,6 +23,8 @@ const userController = {
         )
         .catch((err) => res.status(500).json(err));
     },
+
+//creating a user
     createUser(req, res) {
         User.create(req.body)
         .then((user) => res.json(user))
@@ -40,6 +42,7 @@ const userController = {
         ? res.status(404).json({ message: 'No such user exists' })
         : res.json(user)
         )
+        .catch((err) => res.status(500).json(err));
     },
  //delete a user   
     deleteUser(req, res) {
@@ -49,7 +52,8 @@ const userController = {
             ? res.status(400).json({ message: 'No user found with that ID' })
             : Thought.deleteMany(({ _id: {$in: user.thoughts }})
         ))
-    }
+    },
+    
 };
 
 module.exports = userController;
