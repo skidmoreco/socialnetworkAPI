@@ -1,7 +1,7 @@
 const { Schema, model } = require('mongoose');
 const reactionSchema = require('./Reaction');
 const dateFormat = require('../utils/dateFormat');
-const { stringify } = require('querystring');
+
 
 const thoughtSchema = new Schema(
 {

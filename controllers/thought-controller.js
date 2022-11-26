@@ -40,7 +40,7 @@ const thoughtController = {
             ? res.status(400).json({ message: 'No thought found with that ID' })
             : User.deleteMany({ _id: {$in: thought.thoughts}})
             )
-            .then(() => res.json({ message: 'No thought with that ID' }))
+            .then(() => res.json({ message: 'Thought successfully removed!' }))
             .catch((err) => res.status(500).json(err));
     },
     updateThoughts(req, res) {
